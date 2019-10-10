@@ -26,7 +26,7 @@ Your First PWA Codelab (https://g.co/codelabs/pwa)
     <title>Weather PWA</title>
     <meta name="codelab" content="your-first-pwa-v3" />
     <link rel="stylesheet" type="text/css" href="./styles/inline.css" />
-    <link rel="icon" href="./images/favicon.ico" type=".image/x-icon" />
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
 
     <!-- CODELAB: Add link rel manifest -->
     <link rel="manifest" href="./manifest.json" />
@@ -185,7 +185,7 @@ Your First PWA Codelab (https://g.co/codelabs/pwa)
       // CODELAB: Register service worker.
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('./service-worker.js')
           .then((reg) => {
             console.log('Service worker registered.', reg);
           });
