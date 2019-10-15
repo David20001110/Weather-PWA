@@ -149,13 +149,13 @@ function renderForecast(card, data) {
  * @return {Object} The weather forecast, if the request fails, return null.
  */
 function getForecastFromNetwork(coords) {
-  return fetch('/forecast/${coords}')
-    .then(response => {
-      return response.json();
-    })
-    .catch(() => {
-      return null;
-    });
+  return fetch(`/forecast/${coords}`)
+      .then((response) => {
+        return response.json();
+      })
+      .catch(() => {
+        return null;
+      });
 }
 
 /**
