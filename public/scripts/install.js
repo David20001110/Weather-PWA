@@ -22,6 +22,7 @@ const installButton = document.getElementById('butInstall');
 installButton.addEventListener('click', installPWA);
 
 // CODELAB: Add event listener for beforeinstallprompt event
+window.addEventListener('beforeInstallPrompt', saveBeforeInstallPromptEvent);
 
 
 /**
@@ -32,7 +33,8 @@ installButton.addEventListener('click', installPWA);
  */
 function saveBeforeInstallPromptEvent(evt) {
   // CODELAB: Add code to save event & show the install button.
-
+  deferredInstallPrompt.Event = evt;
+  installButton.removeAttribute('hidden');
 }
 
 
@@ -43,13 +45,21 @@ function saveBeforeInstallPromptEvent(evt) {
  */
 function installPWA(evt) {
   // CODELAB: Add code show install prompt & hide the install button.
-
+  deferredInstallPrompt.prompt();
+  evt.srcElement.setAttribute('hidden', true);
   // CODELAB: Log user response to prompt.
-
+  deferredInstallPrompt.userChoice.then((Choice) => {
+    if(Choice.outcome == 'accepted') {
+      console.log('User accepted the A2HS instal prompt', choice);
+    } else {
+      console.log('User dismissed the A2HS install prompt', choice)
+    }
+    deferredInstallPrompt = null;
+  });
 }
 
 // CODELAB: Add event listener for appinstalled event
-
+window.addEventListener('appInstalled', logAppInstalled);
 /**
  * Event handler for appinstalled event.
  *   Log the installation to analytics or save the event somehow.
@@ -58,5 +68,5 @@ function installPWA(evt) {
  */
 function logAppInstalled(evt) {
   // CODELAB: Add code to log the event
-
+  console.log('Weather app was installed', evt);
 }

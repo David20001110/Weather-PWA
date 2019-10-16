@@ -150,12 +150,12 @@ function renderForecast(card, data) {
  */
 function getForecastFromNetwork(coords) {
   return fetch(`/forecast/${coords}`)
-      .then((response) => {
-        return response.json();
-      })
-      .catch(() => {
-        return null;
-      });
+    .then(response => {
+      return response.json();
+    })
+    .catch(() => {
+      return null;
+    });
 }
 
 /**
@@ -169,7 +169,7 @@ function getForecastFromCache(coords) {
   if (!("caches" in window)) {
     return null;
   }
-  const url = "${window.location.orgin}/forecast/${coords}";
+  const url = `${window.location.origin}/forecast/${coords}`;
   return caches
     .match(url)
     .then(response => {
